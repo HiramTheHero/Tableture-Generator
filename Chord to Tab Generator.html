@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+<title>Chord to Tab Generator</title>
+<script>
+	
+	var letterArray = ["A","A♯/B♭","B","C","C♯/D♭","D","D♯/E♭","E","F","F♯/G♭","G","A♭/G♯"];
+	var keyArray = ["Major","Minor"];
+	var ChordLetter ;
+	var ChordKey ;
+	var tabAssociativeArray = {"A":{"Major":["x","0","2","2","2","0"],
+									"Minor":["x","0","2","2","1","0"]},
+							   "B":{"Major":["x","2","4","4","4","2"],
+									"Minor":["x","2","4","4","3","2"]},
+							   "C":{"Major":["x","3","2","0","1","0"],
+								    "Minor":["x","3","5","5","4","3"]},
+							   "D":{"Major":["x","x","0","2","3","2"],
+									"Minor":["x","x","0","2","3","1"]},
+							   "E":{"Major":["x","2","2","1","0","x"],
+									"Minor":["0","2","2","0","0","0"]},
+							   "F":{"Major":["x","3","3","2","1","x"],
+									"Minor":["1","3","3","1","1","1"]},
+			 				   "G":{"Major":["3","2","0","0","0","3"],
+							   		"Minor":["3","5","5","3","3","3"]},
+							};
+	function generateTab(){
+
+		if(ChordA.checked){
+			ChordLetter = letterArray[0];
+		}
+		else if(ChordB.checked){
+			ChordLetter = letterArray[2];
+		}
+		else if(ChordC.checked){
+			ChordLetter = letterArray[3];
+		}
+		else if(ChordD.checked){
+			ChordLetter = letterArray[5];
+		}
+		else if(ChordE.checked){
+			ChordLetter = letterArray[7];
+		}
+		else if(ChordF.checked){
+			ChordLetter = letterArray[8];
+		}
+		else if(ChordG.checked){
+			ChordLetter = letterArray[10];
+		}
+		if(KeyMajor.checked){
+			ChordKey = keyArray[0];
+		}
+		else if(KeyMinor.checked){
+			ChordKey = keyArray[1];
+		}
+
+	document.getElementById("generated_E").innerHTML = "|-<b>" + tabAssociativeArray[ChordLetter][ChordKey][0] + "-</b>";
+	document.getElementById("generated_A").innerHTML = "|-<b>" + tabAssociativeArray[ChordLetter][ChordKey][1] + "-</b>";
+	document.getElementById("generated_D").innerHTML = "|-<b>" + tabAssociativeArray[ChordLetter][ChordKey][2] + "-</b>";
+	document.getElementById("generated_G").innerHTML = "|-<b>" + tabAssociativeArray[ChordLetter][ChordKey][3] + "-</b>";
+	document.getElementById("generated_B").innerHTML = "|-<b>" + tabAssociativeArray[ChordLetter][ChordKey][4] + "-</b>";
+	document.getElementById("generated_e").innerHTML = "|-<b>" + tabAssociativeArray[ChordLetter][ChordKey][5] + "-</b>";
+}
+	function stringTab(){
+				if(ChordA.checked){
+			ChordLetter = letterArray[0];
+		}
+		else if(ChordB.checked){
+			ChordLetter = letterArray[2];
+		}
+		else if(ChordC.checked){
+			ChordLetter = letterArray[3];
+		}
+		else if(ChordD.checked){
+			ChordLetter = letterArray[5];
+		}
+		else if(ChordE.checked){
+			ChordLetter = letterArray[7];
+		}
+		else if(ChordF.checked){
+			ChordLetter = letterArray[8];
+		}
+		else if(ChordG.checked){
+			ChordLetter = letterArray[10];
+		}
+		if(KeyMajor.checked){
+			ChordKey = keyArray[0];
+		}
+		else if(KeyMinor.checked){
+			ChordKey = keyArray[1];
+		}
+
+	document.getElementById("display_area_E").innerHTML += "-" + tabAssociativeArray[ChordLetter][ChordKey][0] + "-";
+	document.getElementById("display_area_A").innerHTML += "-" + tabAssociativeArray[ChordLetter][ChordKey][1] + "-";
+	document.getElementById("display_area_D").innerHTML += "-" + tabAssociativeArray[ChordLetter][ChordKey][2] + "-";
+	document.getElementById("display_area_G").innerHTML += "-" + tabAssociativeArray[ChordLetter][ChordKey][3] + "-";
+	document.getElementById("display_area_B").innerHTML += "-" + tabAssociativeArray[ChordLetter][ChordKey][4] + "-";
+	document.getElementById("display_area_e").innerHTML += "-" + tabAssociativeArray[ChordLetter][ChordKey][5] + "-";
+	}
+		function deleteTab(){
+
+	document.getElementById("display_area_E").innerHTML = "";
+	document.getElementById("display_area_A").innerHTML = "";
+	document.getElementById("display_area_D").innerHTML = "";
+	document.getElementById("display_area_G").innerHTML = "";
+	document.getElementById("display_area_B").innerHTML = "";
+	document.getElementById("display_area_e").innerHTML = "";
+		}
+
+</script>
+<style>
+</style>
+</head>
+<body style= "font-family: monospace;"> 
+Chord
+<form action="">
+	<input type="radio" name="chord" id="ChordA" value="A">A
+	<input type="radio" name="chord" id="ChordB" value="B">B
+	<input type="radio" name="chord" id="ChordC" value="C">C
+	<input type="radio" name="chord" id="ChordD" value="D">D
+	<input type="radio" name="chord" id="ChordE" value="E">E
+	<input type="radio" name="chord" id="ChordF" value="F">F
+	<input type="radio" name="chord" id="ChordG" value="G">G
+</form>
+Key<br>
+<form action="">
+	<input type="radio" name="key" id="KeyMajor" value="major">Major
+	<input type="radio" name="key" id="KeyMinor" value="minor">Minor
+</form>
+<br>
+	<button onclick= "generateTab()">Generate Tableture</button>
+	<button onclick= "stringTab()">String Tableture</button>
+	<button onclick= "deleteTab()">Delete Tableture</button>
+<p>
+<section><span id="being_display_area_e">e|</span><span id="display_area_e"></span><span id="generated_e"></span></section>
+<section><span id="begin_display_area_B">B|</span><span id="display_area_B"></span><span id="generated_B"></span></section>
+<section><span id="begin_display_area_G">G|</span><span id="display_area_G"></span><span id="generated_G"></span></section>
+<section><span id="begin_display_area_D">D|</span><span id="display_area_D"></span><span id="generated_D"></span></section>
+<section><span id="begin_display_area_A">A|</span><span id="display_area_A"></span><span id="generated_A"></span></section>
+<section><span id="begin_display_area_E">E|</span><span id="display_area_E"></span><span id="generated_E"></span></section>
+</body>
+</html>
